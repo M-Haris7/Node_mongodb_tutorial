@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express(); // a blue print of express is stored in app
 const db = require('./db'); // importing the db.js file
-
+require('dotenv').config(); // to use the .env file
 
 const bodyParser = require('body-parser'); 
 app.use(bodyParser.json()); // to parse the incoming request body
@@ -22,6 +22,9 @@ const taskRoutes = require('./routes/taskRoutes');
 app.use('/users', userRoutes);
 app.use('/tasks', taskRoutes);
 
-app.listen(3000, () => {
+
+const PORT = process.env.PORT || 3000; // to use the port from the .env file other use Port 3000
+
+app.listen(PORT, () => {
   console.log("server is listening on port 3000");
 });
